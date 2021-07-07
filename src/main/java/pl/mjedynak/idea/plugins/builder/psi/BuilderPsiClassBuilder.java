@@ -92,7 +92,7 @@ public class BuilderPsiClassBuilder {
 
     public BuilderPsiClassBuilder withFields() {
         if (useSingleField) {
-            String fieldText = "private " + srcClassName + " " + srcClassFieldName + ";";
+            String fieldText = "private final " + srcClassName + " " + srcClassFieldName + ";";
             PsiField singleField = elementFactory.createFieldFromText(fieldText, srcClass);
             builderClass.add(singleField);
         } else if (isInnerBuilder(builderClass)) {
@@ -116,9 +116,8 @@ public class BuilderPsiClassBuilder {
     }
 
     public BuilderPsiClassBuilder withInitializingMethod() {
-        String prefix = isVowel(srcClassName.toLowerCase(Locale.ENGLISH).charAt(0)) ? AN_PREFIX : A_PREFIX;
         PsiMethod staticMethod = elementFactory.createMethodFromText(
-                "public static " + builderClassName + prefix + srcClassName + "() { return new " + builderClassName + "(); }", srcClass);
+                "public static " + builderClassName + " builder() { return new " + builderClassName + "(); }", srcClass);
         builderClass.add(staticMethod);
         return this;
     }
