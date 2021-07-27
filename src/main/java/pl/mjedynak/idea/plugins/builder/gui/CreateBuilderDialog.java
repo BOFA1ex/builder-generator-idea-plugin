@@ -197,7 +197,7 @@ public class CreateBuilderDialog extends DialogWrapper {
         gbConstraints.fill = GridBagConstraints.HORIZONTAL;
         gbConstraints.anchor = GridBagConstraints.WEST;
 
-        innerBuilder = new JCheckBox();
+        innerBuilder = new JCheckBox(null, null, true);
         innerBuilder.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -243,7 +243,7 @@ public class CreateBuilderDialog extends DialogWrapper {
         gbConstraints.gridwidth = 1;
         gbConstraints.fill = GridBagConstraints.HORIZONTAL;
         gbConstraints.anchor = GridBagConstraints.WEST;
-        useSingleField = new JCheckBox();
+        useSingleField = new JCheckBox(null, null, true);
         panel.add(useSingleField, gbConstraints);
         // useSingleField
 
@@ -280,7 +280,7 @@ public class CreateBuilderDialog extends DialogWrapper {
     void checkIfSourceClassHasZeroArgsConstructorWhenUsingSingleField() {
         if (useSingleField()) {
             PsiMethod[] constructors = sourceClass.getConstructors();
-            if(constructors.length == 0){
+            if (constructors.length == 0) {
                 return;
             }
             for (PsiMethod constructor : constructors) {
